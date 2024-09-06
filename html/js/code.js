@@ -5,6 +5,15 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 
+//
+// To do: doRegister function for register.html page
+// Refer to register.html for id names
+function doRegister()
+{
+	// Redirects to homepage if registration is good.
+	window.location.href = "index.html";
+}
+
 function doLogin()
 {
 	userId = 0;

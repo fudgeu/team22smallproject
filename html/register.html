@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Galaxy Collapse</title>
+		<link rel="icon" href="./images/sky.jpg" type="favicon">
+		<script type="text/javascript" src="js/md5.js"></script>
+		<script type="text/javascript" src="js/code.js"></script>
+			<link href="css/styles.css" rel="stylesheet">	
+			<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+	</head>
+	<body>
+		<!-- Some lazy inline css to try to get every title thing centered-->
+		<div style="text-align: center">
+			<h1 style="margin-left: 3%; position: relative; bottom: 50px; left: 50px;" id="title">Galaxy</h1>
+			<img style="width: 300px; border-radius:500px; mix-blend-mode: lighten;" src="./images/spinning.gif">
+			<h1 style="position: relative; bottom: 50px; right: 50px;" id="title">Collapse</h1>
+		</div>
+
+		<hr style="width: 30%;">
+
+		<!-- More lazy inline css to get stuff centered. -->
+		<div id="registerDiv">
+			<span id="inner-title">R E G I S T E R</span>
+      <input type="text" id="registerFirstName" placeholder="First Name" /><br />
+      <input type="text" id="registerLastName" placeholder="Last Name" /><br />
+			<input type="text" id="registerUsername" placeholder="Username" /><br />
+			<input type="password" id="registerPassword" placeholder="Password"/><br />
+			<button type="button" id="registerButton" class="buttons" onclick="doRegister();"> Done </button>
+			<p>
+				<a style="font-size: 18px;"href="./index.html">Cancel</a>
+			</p>
+			<span id="registerResult"></span>
+		</div>
+	</body>
+</html>

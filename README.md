@@ -1,4 +1,5 @@
 # Team 22 Small Project
+<a href="http://galaxycollapse.com">![header](https://github.com/user-attachments/assets/4d4c6099-fdca-47a6-b8bb-79dfd037b163)</a>
 
 <h1>Team members</h1>
 <ul>
