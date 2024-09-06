@@ -1,9 +1,18 @@
-const urlBase = 'http://galaxycollapse.com/LAMPAPI';
+const urlBase = 'http://COP4331-5.com/LAMPAPI';
 const extension = 'php';
 
 let userId = 0;
 let firstName = "";
 let lastName = "";
+
+//
+// To do: doRegister function for register.html page
+// Refer to register.html for id names
+function doRegister()
+{
+	// Redirects to homepage if registration is good.
+	window.location.href = "index.html";
+}
 
 function doLogin()
 {

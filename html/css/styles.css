@@ -47,6 +47,19 @@ a:hover{
     box-shadow: 0 10px 15px #52b69a, 0 20px 50px #52b69a;
 }
 
+#registerDiv
+{
+    width: 20%;
+    font-size: 20px;
+    margin: auto;
+    margin-top: 5%;
+    padding: 25px;
+    background-color: rgba(41, 131, 38, 0.1);
+    border-radius: 100px;
+    text-align: center;
+    box-shadow: 0 10px 15px #52b69a, 0 20px 50px #52b69a;
+}
+
 #loggedInDiv
 {
     font-size: 30px;
@@ -81,6 +94,39 @@ a:hover{
     opacity: 50%;
 }
 
+#registerUsername
+{
+    width: 250px;
+	font-size: 20px;
+    text-align: left;
+    padding-left: 10px;
+    background-color: rgba(41, 131, 38, 0.1);
+    color: #b5e48c;
+}
+#registerPassword{
+    width: 250px;
+	font-size: 20px;
+    text-align: left;
+    padding-left: 10px;
+    background-color: rgba(41, 131, 38, 0.1);
+    color: #b5e48c;
+}
+#registerFirstName{
+    width: 250px;
+	font-size: 20px;
+    text-align: left;
+    padding-left: 10px;
+    background-color: rgba(41, 131, 38, 0.1);
+    color: #b5e48c;
+}
+#registerLastName{
+    width: 250px;
+	font-size: 20px;
+    text-align: left;
+    padding-left: 10px;
+    background-color: rgba(41, 131, 38, 0.1);
+    color: #b5e48c;
+}
 #loginName
 {
     width: 250px;
@@ -151,6 +197,14 @@ input[type="text"],input[type="password"]{
     margin-left: 40%;
 }
 #loginButton{
+    width: 40%;
+    margin-top: 15px;
+    margin-bottom: 25px;
+    padding: 10px;
+    border-radius: 15px;
+    font-size: 25px;
+}
+#registerButton{
     width: 40%;
     margin-top: 15px;
     margin-bottom: 25px;
