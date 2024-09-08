@@ -14,8 +14,7 @@ function doRegister()
 	window.location.href = "index.html";
 }
 
-async function doLogin()
-{
+async function doLogin() {
 	userId = 0
 	firstName = ''
 	lastName = ''
@@ -30,7 +29,7 @@ async function doLogin()
 	try {
 		const rawResult = await fetch(url, {
 			method: 'POST',
-			body: payload,
+			body: JSON.stringify(payload),
 			headers: {
 				'Content-type': 'application.json; charset=UTF-8',
 			},
@@ -53,8 +52,7 @@ async function doLogin()
 	}
 }
 
-function saveCookie()
-{
+function saveCookie() {
 	const minutes = 20
 	const expires = new Date()
 	expires.setTime(date.getTime() + (minutes * 60 * 1000))
@@ -63,46 +61,29 @@ function saveCookie()
 	document.cookie = JSON.stringify(newCookie)
 }
 
-function readCookie()
-{
-	userId = -1;
-	let data = document.cookie;
-	let splits = data.split(",");
-	for(var i = 0; i < splits.length; i++) 
-	{
-		let thisOne = splits[i].trim();
-		let tokens = thisOne.split("=");
-		if( tokens[0] == "firstName" )
-		{
-			firstName = tokens[1];
-		}
-		else if( tokens[0] == "lastName" )
-		{
-			lastName = tokens[1];
-		}
-		else if( tokens[0] == "userId" )
-		{
-			userId = parseInt( tokens[1].trim() );
-		}
-	}
+function onColorPageLoaded() {
+	// Read in cookie
+	userId = -1
+	const data = JSON.parse(document.cookie)
 	
-	if( userId < 0 )
-	{
-		window.location.href = "index.html";
+	firstName = data.firstName ?? 'Unknown'
+	lastName = data.lastName ?? 'User'
+	userId = data.userId ?? -1
+	
+	if (userId < 0) { // Kick back to login screen if cookie is invalid
+		window.location.href = "index.html"
 	}
-	else
-	{
-//		document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
-	}
+
+	// Update page content to include username
+	document.getElementById('userName').innerHTML = `${firstName} ${lastName}`
 }
 
-function doLogout()
-{
-	userId = 0;
-	firstName = "";
-	lastName = "";
-	document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
-	window.location.href = "index.html";
+function doLogout() {
+	userId = -1
+	firstName = ''
+	lastName = ''
+	document.cookie = ''
+	window.location.href = 'index.html'
 }
 
 function addColor()
