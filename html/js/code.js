@@ -55,7 +55,7 @@ async function doLogin() {
 function saveCookie() {
 	const minutes = 20
 	const expires = new Date()
-	expires.setTime(date.getTime() + (minutes * 60 * 1000))
+	expires.setTime(expires.getTime() + (minutes * 60 * 1000))
 
 	const newCookie = {firstName, lastName, userId, expires: expires.toGMTString()}
 	document.cookie = JSON.stringify(newCookie)
