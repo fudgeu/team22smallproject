@@ -1,4 +1,4 @@
-const urlBase = '161.35.2.206/LAMPAPI';
+const urlBase = 'http://161.35.2.206/LAMPAPI';
 const extension = 'php';
 
 let userId = 0;
@@ -49,7 +49,7 @@ async function doLogin()
 	} catch (e) {
 		console.error('Failed to log in')
 		console.error(e)
-		document.getElementById('loginResult').innerHTML = 'Failed to communicate with server, please try again'
+		document.getElementById('loginResult').innerHTML = 'Failed to log in, please try again'
 	}
 }
 
