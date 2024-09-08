@@ -1,4 +1,5 @@
-const urlBase = 'http://161.35.2.206/LAMPAPI';
+//const urlBase = 'http://161.35.2.206/LAMPAPI';
+const urlBase = 'http://galaxycollapse.com/LAMPAPI';
 const extension = 'php';
 
 let userId = 0;
