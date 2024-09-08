@@ -27,10 +27,8 @@ async function doLogin()
 
 	let payload = {login, password}
 	let url = urlBase + '/Login.' + extension
-	console.log(url)
 	try {
-		const rawResult = await fetch({
-			url,
+		const rawResult = await fetch(url, {
 			method: 'POST',
 			body: payload,
 			headers: {
@@ -49,7 +47,7 @@ async function doLogin()
 		saveCookie()
 		window.location.href = 'color.html'
 	} catch (e) {
-		console.error('Failed to log in:')
+		console.error('Failed to log in')
 		console.error(e)
 		document.getElementById('loginResult').innerHTML = 'Failed to communicate with server, please try again'
 	}
