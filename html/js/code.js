@@ -52,29 +52,8 @@ async function doLogin() {
 	}
 }
 
-function saveCookie() {
-	const minutes = 20
-	const expires = new Date()
-	expires.setTime(expires.getTime() + (minutes * 60 * 1000))
-
-	const newCookie = {firstName, lastName, userId, expires: expires.toGMTString()}
-	document.cookie = JSON.stringify(newCookie)
-}
-
 function onColorPageLoaded() {
-	// Read in cookie
-	userId = -1
-	const data = JSON.parse(document.cookie)
-	
-	firstName = data.firstName ?? 'Unknown'
-	lastName = data.lastName ?? 'User'
-	userId = data.userId ?? -1
-	
-	if (userId < 0) { // Kick back to login screen if cookie is invalid
-		window.location.href = "index.html"
-	}
-
-	// Update page content to include username
+	loadCookie()
 	document.getElementById('userName').innerHTML = `${firstName} ${lastName}`
 }
 
@@ -82,7 +61,7 @@ function doLogout() {
 	userId = -1
 	firstName = ''
 	lastName = ''
-	document.cookie = ''
+	document.cookie = 'firstName="";lastName="";userId=""'
 	window.location.href = 'index.html'
 }
 
@@ -160,4 +139,26 @@ function searchColor()
 		document.getElementById("colorSearchResult").innerHTML = err.message;
 	}
 	
+}
+
+function loadCookie() {
+	const [firstNameRaw, lastnameRaw, userIdRaw, _] = document.cookie.split(';')
+	firstName = firstNameRaw.split('=')[1] ?? 'Unknown'
+	lastName = lastnameRaw.split('=')[1] ?? 'User'
+	userId = userIdRaw.split('=')[1] ?? -1
+
+	if (userId < 0) { // Kick back to login screen if cookie is invalid
+		window.location.href = "index.html"
+	}
+}
+
+function saveCookie() {
+	const minutes = 20
+	const expires = new Date()
+	expires.setTime(expires.getTime() + (minutes * 60 * 1000))
+
+	document.cookie = `firstName=${firstName}`
+	document.cookie = `lastName=${lastName}`
+	document.cookie = `userId=${userId}`
+	document.cookie = `expires=${expires.toGMTString()}`
 }
