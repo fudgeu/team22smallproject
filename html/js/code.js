@@ -14,65 +14,55 @@ function doRegister()
 	window.location.href = "index.html";
 }
 
-function doLogin()
+async function doLogin()
 {
-	userId = 0;
-	firstName = "";
-	lastName = "";
+	userId = 0
+	firstName = ''
+	lastName = ''
 	
-	let login = document.getElementById("loginName").value;
-	let password = document.getElementById("loginPassword").value;
-//	var hash = md5( password );
+	let login = document.getElementById('loginName').value
+	let password = document.getElementById('loginPassword').value
 	
-	document.getElementById("loginResult").innerHTML = "";
+	document.getElementById('loginResult').innerHTML = ""
 
-	let tmp = {login:login,password:password};
-//	var tmp = {login:login,password:hash};
-	let jsonPayload = JSON.stringify( tmp );
-	
-	let url = urlBase + '/Login.' + extension;
+	let payload = {login, password}
+	let url = urlBase + '/Login.' + extension
+	console.log(url)
+	try {
+		const rawResult = await fetch({
+			url,
+			method: 'POST',
+			body: payload,
+			headers: {
+				'Content-type': 'application.json; charset=UTF-8',
+			},
+		})
+		const result = await rawResult.json()
 
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try
-	{
-		xhr.onreadystatechange = function() 
-		{
-			if (this.readyState == 4 && this.status == 200) 
-			{
-				let jsonObject = JSON.parse( xhr.responseText );
-				userId = jsonObject.id;
-		
-				if( userId < 1 )
-				{		
-					document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
-					return;
-				}
-		
-				firstName = jsonObject.firstName;
-				lastName = jsonObject.lastName;
+		if (result.id < 1) { // Incorrect login
+			document.getElementById('loginResult').innerHTML = 'Incorrect username or password, please try again'
+			return
+		}
 
-				saveCookie();
-	
-				window.location.href = "color.html";
-			}
-		};
-		xhr.send(jsonPayload);
+		firstName = result.firstName
+		lastName = result.lastName
+		saveCookie()
+		window.location.href = 'color.html'
+	} catch (e) {
+		console.error('Failed to log in:')
+		console.error(e)
+		document.getElementById('loginResult').innerHTML = 'Failed to communicate with server, please try again'
 	}
-	catch(err)
-	{
-		document.getElementById("loginResult").innerHTML = err.message;
-	}
-
 }
 
 function saveCookie()
 {
-	let minutes = 20;
-	let date = new Date();
-	date.setTime(date.getTime()+(minutes*60*1000));	
-	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
+	const minutes = 20
+	const expires = new Date()
+	expires.setTime(date.getTime() + (minutes * 60 * 1000))
+
+	const newCookie = {firstName, lastName, userId, expires: expires.toGMTString()}
+	document.cookie = JSON.stringify(newCookie)
 }
 
 function readCookie()
