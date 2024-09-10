@@ -173,6 +173,15 @@ input[type="text"],input[type="password"]{
     font-family: 'Ubuntu';
     color: #d9ed92;;
 }
+#inner-title2{
+    display: inline-block;
+    font-size: 30px;
+    width: 90%;
+    text-align: center;
+    margin-bottom: 6%;
+    font-family: 'Ubuntu';
+    color: #d9ed92;;
+}
 
 #loginResult{
     display: inline-block;

@@ -27,6 +27,17 @@ function doRegister()
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
+				document.getElementById("registerFirstName").remove();
+				document.getElementById("registerLastName").remove();
+				document.getElementById("registerUsername").remove();
+				document.getElementById("registerPassword").remove();
+				document.getElementById("dotImg").remove();
+				document.getElementById("dotImg2").remove();
+				document.getElementById("userImg").remove();
+				document.getElementById("keyImg").remove();
+				document.getElementById("registerButton").remove();
+        document.getElementById("inner-title2").remove();
+				document.getElementById("registerGif").innerHTML = '<img style="width: 50%" src="../images/yippee.gif"></img>'
 				document.getElementById("registerResult").innerHTML = "Registration Complete!";
 			}
 		};

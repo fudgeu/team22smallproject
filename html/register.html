@@ -21,21 +21,22 @@
 		<!-- More lazy inline css to get stuff centered. -->
 		<div id="registerDiv">
 			<span id="inner-title">R E G I S T E R</span>
-			<p id="inner-title" style="font-size: 20px;">All fields need to be filled*</p>
-			<img style="mix-blend-mode: lighten; width: 10%; position: relative; top: 15px; right: 5px;" src="./images/dot.png">
+			<p id="inner-title2" style="font-size: 20px;">All fields need to be filled*</p>
+			<img id="dotImg" style="mix-blend-mode: lighten; width: 10%; position: relative; top: 15px; right: 5px;" src="./images/dot.png">
       <input type="text" id="registerFirstName" placeholder="Your First Name" /><br />
-			<img style="mix-blend-mode: lighten; width: 10%; position: relative; top: 15px; right: 5px;" src="./images/dot.png">
+			<img id="dotImg2" style="mix-blend-mode: lighten; width: 10%; position: relative; top: 15px; right: 5px;" src="./images/dot.png">
       <input type="text" id="registerLastName" placeholder="Your Last Name" /><br />
-			<img style="mix-blend-mode: lighten; width: 10%; position: relative; top: 15px; right: 5px;" src="./images/user.png">
+			<img id="userImg" style="mix-blend-mode: lighten; width: 10%; position: relative; top: 15px; right: 5px;" src="./images/user.png">
 			<input type="text" id="registerUsername" placeholder="Your Username" /><br />
-			<img style="mix-blend-mode: lighten; width: 10%; position: relative; top: 10px;" src="./images/key.png">
+			<img id="keyImg" style="mix-blend-mode: lighten; width: 10%; position: relative; top: 10px;" src="./images/key.png">
 			<input type="password" id="registerPassword" placeholder="Your Password"/><br />
+			<span id="registerGif"></span>
+			<p style="color: lightcoral;" id="registerResult"></span>
 			<button type="button" id="registerButton" class="buttons" onclick="doRegister();"> Submit </button>
 			<p>
 				<a href="./index.html"><img style="mix-blend-mode: lighten; width: 10%; position: relative; top: 15px; right: 5px;" src="./images/back.png"></a>
 				<a style="font-size: 18px;"href="./index.html">Back to Login</a>
 			</p>
-			<span id="registerResult"></span>
 		</div>
 	</body>
 </html>
