@@ -12,6 +12,12 @@ function doRegister()
 	let lastName = document.getElementById("registerLastName").value;
 	let login = document.getElementById("registerUsername").value;
 	let password = document.getElementById("registerPassword").value;
+ 
+  if (firstName === "" || lastName === "" || login === "" | password === "")
+  {
+  document.getElementById("registerResult").innerHTML = "One or more fields not filled";
+  return;
+  }
 
 	let temp = {firstName,lastName,login,password};
 	let jsonPayload = JSON.stringify(temp);
@@ -39,6 +45,7 @@ function doRegister()
         document.getElementById("inner-title2").remove();
 				document.getElementById("registerGif").innerHTML = '<img style="width: 50%" src="../images/yippee.gif"></img>'
 				document.getElementById("registerResult").innerHTML = "Registration Complete!";
+        document.getElementById("registerResult").style.color="#39ff14";
 			}
 		};
 		xhr.send(jsonPayload);
