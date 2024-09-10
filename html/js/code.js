@@ -6,13 +6,36 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 
-//
-// To do: doRegister function for register.html page
-// Refer to register.html for id names
 function doRegister()
 {
-	// Redirects to homepage if registration is good.
-	window.location.href = "index.html";
+	let firstName = document.getElementById("registerFirstName").value;
+	let lastName = document.getElementById("registerLastName").value;
+	let login = document.getElementById("registerUsername").value;
+	let password = document.getElementById("registerPassword").value;
+
+	let temp = {firstName,lastName,login,password};
+	let jsonPayload = JSON.stringify(temp);
+
+	let url = urlBase + '/AddUser.' + extension;
+	
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				document.getElementById("registerResult").innerHTML = "Registration Complete!";
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("registerResult").innerHTML = err.message;
+	}
 }
 
 async function doLogin() {
