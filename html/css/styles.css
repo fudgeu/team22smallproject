@@ -166,7 +166,7 @@ input[type="text"],input[type="password"]{
 
 #inner-title{
     display: inline-block;
-    font-size: 1em;
+    font-size: 30px;
     width: 90%;
     text-align: center;
     margin-bottom: 6%;
