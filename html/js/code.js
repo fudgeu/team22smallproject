@@ -210,7 +210,7 @@ async function saveContact() {
 	clearTimeout(saveContactTimeoutId)
 
 	// Push request to server
-	const payload = { name, phone, email, userId }
+	const payload = { name, phone, email, userID: userId }
 	const url = urlBase + '/AddContact.' + extension
 	try {
 		const rawResponse = await fetch(url, {
