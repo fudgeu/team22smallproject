@@ -18,7 +18,7 @@ function markRegistrationComplete() {
 	document.getElementById("keyImg").remove();
 	document.getElementById("registerButton").remove();
 	document.getElementById("inner-title2").remove();
-	document.getElementById("registerGif").innerHTML = '<img style="width: 50%" src="../images/yippee.gif"></img>'
+	document.getElementById("registerGif").innerHTML = '<img style="width: 50%" src="../images/yippee.gif" alt="weird thing doing a backflip"></img>'
 	document.getElementById("registerResult").innerHTML = "Registration Complete!";
 	document.getElementById("registerResult").style.color="#39ff14";
 }
