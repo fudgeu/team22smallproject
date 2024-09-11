@@ -1,4 +1,3 @@
-//const urlBase = 'http://161.35.2.206/LAMPAPI';
 const urlBase = 'http://galaxycollapse.com/LAMPAPI';
 const extension = 'php';
 
@@ -38,7 +37,7 @@ async function doRegister() {
 	const payload = {firstName,lastName,login,password};
 	const url = urlBase + '/AddUser.' + extension;
 	try {
-		const rawResult = await fetch(url, {
+		const rawResponse = await fetch(url, {
 			method: 'POST',
 			body: JSON.stringify(payload),
 			headers: {
@@ -46,7 +45,7 @@ async function doRegister() {
 			},
 		})
 		if (!rawResponse.ok) throw Error(rawResponse.statusText)
-		const result = await rawResult.json()
+		const result = await rawResponse.json()
 		markRegistrationComplete()
 	} catch(e) {
 		console.error('Failed to register user')
@@ -56,7 +55,7 @@ async function doRegister() {
 }
 
 async function doLogin() {
-	userId = 0
+	userId = -1
 	firstName = ''
 	lastName = ''
 	
@@ -68,7 +67,7 @@ async function doLogin() {
 	let payload = {login, password}
 	let url = urlBase + '/Login.' + extension
 	try {
-		const rawResult = await fetch(url, {
+		const rawResponse = await fetch(url, {
 			method: 'POST',
 			body: JSON.stringify(payload),
 			headers: {
@@ -76,7 +75,7 @@ async function doLogin() {
 			},
 		})
 		if (!rawResponse.ok) throw Error(rawResponse.statusText)
-		const result = await rawResult.json()
+		const result = await rawResponse.json()
 
 		if (result.id < 1) { // Incorrect login
 			document.getElementById('loginResult').innerHTML = 'Incorrect username or password, please try again'
@@ -88,7 +87,7 @@ async function doLogin() {
 		userId = result.id
 
 		saveCookie()
-		window.location.href = 'color.html'
+		window.location.href = 'contacts.html'
 	} catch (e) {
 		console.error('Failed to log in')
 		console.error(e)
@@ -96,7 +95,7 @@ async function doLogin() {
 	}
 }
 
-function onColorPageLoaded() {
+function onPrivilegedPageLoaded() {
 	loadCookie()
 	document.getElementById('userName').innerHTML = `${firstName} ${lastName}`
 }
@@ -239,12 +238,32 @@ async function saveContact() {
 
 // Cookie logic
 function loadCookie() {
-	const [firstNameRaw, lastnameRaw, userIdRaw, _] = document.cookie.split(';')
-	firstName = firstNameRaw.split('=')[1] ?? 'Unknown'
-	lastName = lastnameRaw.split('=')[1] ?? 'User'
-	userId = parseInt(userIdRaw.split('=')[1]) ?? -1
+	// Dump out old data
+	firstName = ''
+	lastName = ''
+	userId = -1
 
-	if (userId < 0) { // Kick back to login screen if cookie is invalid
+	// Get and parse each cookie
+	const cookies = document.cookie.split(';')
+	for (let i = 0; i < cookies.length; i++) {
+		const cookie = cookies[i]
+		const splitText = cookie.split('=')
+
+		switch (splitText[0]) {
+			case 'firstName':
+				firstName = splitText[1]
+				break
+			case 'lastName':
+				lastName = splitText[1]
+				break
+			case 'userId':
+				userId = parseInt(splitText[1])
+				break
+		}
+	}
+
+	// Kick back to login screen if cookie is invalid
+	if (userId < 0) {
 		window.location.href = "index.html"
 	}
 }
