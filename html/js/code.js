@@ -191,7 +191,7 @@ async function searchContacts() {
 	const resultText = document.getElementById('searchContactResult')
 
 	// Get data from fields
-	const query = document.getElementById('searchText')
+	const query = document.getElementById('searchText').value
 
 	// Make sure it isn't empty
 	if (query.trim() === '') {
