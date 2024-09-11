@@ -6,6 +6,8 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 
+let saveContactTimeoutId = null
+
 function markRegistrationComplete() {
 	document.getElementById("registerFirstName").remove();
 	document.getElementById("registerLastName").remove();
@@ -43,6 +45,7 @@ async function doRegister() {
 				'Content-type': 'application.json; charset=UTF-8',
 			},
 		})
+		if (!rawResponse.ok) throw Error(rawResponse.statusText)
 		const result = await rawResult.json()
 		markRegistrationComplete()
 	} catch(e) {
@@ -72,6 +75,7 @@ async function doLogin() {
 				'Content-type': 'application.json; charset=UTF-8',
 			},
 		})
+		if (!rawResponse.ok) throw Error(rawResponse.statusText)
 		const result = await rawResult.json()
 
 		if (result.id < 1) { // Incorrect login
@@ -189,6 +193,7 @@ function searchContacts() {
 
 async function saveContact() {
 	if (userId < 1) return
+	const resultText = document.getElementById('saveContactResult')
 
 	// Get data from fields
 	const name = document.getElementById("nameField").value
@@ -197,30 +202,38 @@ async function saveContact() {
 
 	// Make sure none are empty
 	if (name.trim() === '' || email.trim() === '' || phone.trim() === '') {
-		document.getElementById('saveContactResult').innerHTML = 'Please fill out all fields'
+		resultText.innerHTML = 'Please fill out all fields'
 		return
 	}
+
+	resultText.innerHTML = "Adding..."
+	clearTimeout(saveContactTimeoutId)
 
 	// Push request to server
 	const payload = { name, phone, email, userId }
 	const url = urlBase + '/SaveContact.' + extension
 	try {
-		const rawResponse = fetch(url, {
+		const rawResponse = await fetch(url, {
 			method: 'POST',
 			body: JSON.stringify(payload),
 			headers: {
 				'Content-type': 'application.json; charset=UTF-8',
 			},
 		})
+		if (!rawResponse.ok) throw Error(rawResponse.statusText)
 
 		// Clear fields
 		document.getElementById("nameField").value = ''
 		document.getElementById("phoneNumberField").value = ''
 		document.getElementById("emailField").value = ''
+
+		// Display success message
+		resultText.innerHTML = 'Contact added!'
+		saveContactTimeoutId = setTimeout(() => resultText.innerHTML = '', 3000)
 	} catch (e) {
 		console.error('Failed to add contact')
 		console.error(e)
-		document.getElementById('saveContactResult').innerHTML = 'There was an error contacting the server, please try again later'
+		resultText.innerHTML = 'There was an error contacting the server, please try again later'
 	}
 }
 
