@@ -189,6 +189,7 @@ function searchColor()
 async function searchContacts() {
 	if (userId < 1) return
 	const resultText = document.getElementById('searchContactResult')
+	const contactList = document.getElementById('contactList').innerHTML
 
 	// Get data from fields
 	const query = document.getElementById('searchText').value
@@ -199,7 +200,8 @@ async function searchContacts() {
 		return
 	}
 
-	resultText.innerHTML = 'Adding...'
+	resultText.innerHTML = 'Searching...'
+	contactList.innerHTML = ''
 
 	// Grab results from server
 	const payload = { search: query, userID: userId }
@@ -215,8 +217,19 @@ async function searchContacts() {
 		if (!rawResponse.ok) throw Error(rawResponse.statusText)
 		const result = await rawResponse.json()
 
+		if (result.error.trim() != '') {
+			// Error occurred (like no contacts found)
+			resultText.innerHTML = result.error 
+			return
+		} else {
+			resultText.innerHTML = '' // Clear loading text
+		}
+
 		// Load results into table
-		document.getElementById('contactList').innerHTML = JSON.stringify(result)
+		contactList.innerHTML = result.results.map(contact => {
+			splitText = contact.split(',')
+			return `<tr><td>${splitText[0]}</td><td>${splitText[1]}</td><td>${splitText[2]}</td></tr>`
+		}).join('')
 	} catch (e) {
 		console.error("Failed to search contacts on server")
 		console.error(e)
