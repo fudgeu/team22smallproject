@@ -211,7 +211,7 @@ async function saveContact() {
 
 	// Push request to server
 	const payload = { name, phone, email, userId }
-	const url = urlBase + '/SaveContact.' + extension
+	const url = urlBase + '/AddContact.' + extension
 	try {
 		const rawResponse = await fetch(url, {
 			method: 'POST',
