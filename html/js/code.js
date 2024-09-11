@@ -189,7 +189,7 @@ function searchColor()
 async function searchContacts() {
 	if (userId < 1) return
 	const resultText = document.getElementById('searchContactResult')
-	const contactList = document.getElementById('contactList').innerHTML
+	const contactList = document.getElementById('contactList')
 
 	// Get data from fields
 	const query = document.getElementById('searchText').value
