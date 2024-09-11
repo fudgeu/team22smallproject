@@ -189,6 +189,7 @@ function searchColor()
 async function searchContacts() {
 	if (userId < 1) return
 	const resultText = document.getElementById('searchContactResult')
+	const contactTable = document.getElementById('contactTable')
 	const contactList = document.getElementById('contactList')
 
 	// Get data from fields
@@ -219,7 +220,8 @@ async function searchContacts() {
 
 		if (result.error.trim() != '') {
 			// Error occurred (like no contacts found)
-			resultText.innerHTML = result.error 
+			resultText.innerHTML = result.error
+			contactTable.style.display = 'none'
 			return
 		} else {
 			resultText.innerHTML = '' // Clear loading text
@@ -230,10 +232,14 @@ async function searchContacts() {
 			splitText = contact.split(',')
 			return `<tr><td>${splitText[0]}</td><td>${splitText[1]}</td><td>${splitText[2]}</td></tr>`
 		}).join('')
+
+		// Show table
+		contactTable.style.display = 'block'
 	} catch (e) {
 		console.error("Failed to search contacts on server")
 		console.error(e)
 		resultText.innerHTML = 'There was an error processing your request, please try again later'
+		contactTable.style.display = 'none'
 	}
 }
 
