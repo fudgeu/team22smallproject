@@ -6,53 +6,49 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 
-function doRegister()
-{
-	let firstName = document.getElementById("registerFirstName").value;
-	let lastName = document.getElementById("registerLastName").value;
-	let login = document.getElementById("registerUsername").value;
-	let password = document.getElementById("registerPassword").value;
+function markRegistrationComplete() {
+	document.getElementById("registerFirstName").remove();
+	document.getElementById("registerLastName").remove();
+	document.getElementById("registerUsername").remove();
+	document.getElementById("registerPassword").remove();
+	document.getElementById("dotImg").remove();
+	document.getElementById("dotImg2").remove();
+	document.getElementById("userImg").remove();
+	document.getElementById("keyImg").remove();
+	document.getElementById("registerButton").remove();
+	document.getElementById("inner-title2").remove();
+	document.getElementById("registerGif").innerHTML = '<img style="width: 50%" src="../images/yippee.gif"></img>'
+	document.getElementById("registerResult").innerHTML = "Registration Complete!";
+	document.getElementById("registerResult").style.color="#39ff14";
+}
+
+async function doRegister() {
+	const firstName = document.getElementById("registerFirstName").value;
+	const lastName = document.getElementById("registerLastName").value;
+	const login = document.getElementById("registerUsername").value;
+	const password = document.getElementById("registerPassword").value;
  
-  if (firstName === "" || lastName === "" || login === "" | password === "")
-  {
-  document.getElementById("registerResult").innerHTML = "One or more fields not filled";
-  return;
-  }
-
-	let temp = {firstName,lastName,login,password};
-	let jsonPayload = JSON.stringify(temp);
-
-	let url = urlBase + '/AddUser.' + extension;
-	
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try
-	{
-		xhr.onreadystatechange = function() 
-		{
-			if (this.readyState == 4 && this.status == 200) 
-			{
-				document.getElementById("registerFirstName").remove();
-				document.getElementById("registerLastName").remove();
-				document.getElementById("registerUsername").remove();
-				document.getElementById("registerPassword").remove();
-				document.getElementById("dotImg").remove();
-				document.getElementById("dotImg2").remove();
-				document.getElementById("userImg").remove();
-				document.getElementById("keyImg").remove();
-				document.getElementById("registerButton").remove();
-        document.getElementById("inner-title2").remove();
-				document.getElementById("registerGif").innerHTML = '<img style="width: 50%" src="../images/yippee.gif"></img>'
-				document.getElementById("registerResult").innerHTML = "Registration Complete!";
-        document.getElementById("registerResult").style.color="#39ff14";
-			}
-		};
-		xhr.send(jsonPayload);
+	if (firstName === "" || lastName === "" || login === "" | password === "") {
+		document.getElementById("registerResult").innerHTML = "One or more fields not filled";
+		return;
 	}
-	catch(err)
-	{
-		document.getElementById("registerResult").innerHTML = err.message;
+
+	const payload = {firstName,lastName,login,password};
+	const url = urlBase + '/AddUser.' + extension;
+	try {
+		const rawResult = await fetch(url, {
+			method: 'POST',
+			body: JSON.stringify(payload),
+			headers: {
+				'Content-type': 'application.json; charset=UTF-8',
+			},
+		})
+		const result = await rawResult.json()
+		markRegistrationComplete()
+	} catch(e) {
+		console.error('Failed to register user')
+		console.error(e)
+		document.getElementById("registerResult").innerHTML = 'Failed to register, please try again later';
 	}
 }
 
@@ -107,6 +103,7 @@ function doLogout() {
 	window.location.href = 'index.html'
 }
 
+// Color logic (to be removed)
 function addColor()
 {
 	let newColor = document.getElementById("colorText").value;
@@ -183,6 +180,16 @@ function searchColor()
 	
 }
 
+// Contact logic
+function searchContacts() {
+	console.log("search contact hit")
+}
+
+function saveContact() {
+	console.log("save contact hit")
+}
+
+// Cookie logic
 function loadCookie() {
 	const [firstNameRaw, lastnameRaw, userIdRaw, _] = document.cookie.split(';')
 	firstName = firstNameRaw.split('=')[1] ?? 'Unknown'

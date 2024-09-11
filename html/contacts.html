@@ -1,0 +1,42 @@
+<html>
+<head>
+	<title>COP 4331 LAMP Stack Demo</title>
+	<script type="text/javascript" src="js/code.js"></script>
+    <link href="css/styles.css" rel="stylesheet">	
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+	
+	<script type="text/javascript">
+		document.addEventListener('DOMContentLoaded', onColorPageLoaded, false);
+	</script>
+	
+</head>
+<body>
+
+<h1 id="title">COP 4331 LAMP Stack Demo</h1>
+
+<div id="loggedInDiv">
+	<span id="userName"></span><br />
+	<button type="button" id="logoutButton" class="buttons" onclick="doLogout();"> Log Out </button>
+</div>
+
+<div id="accessUIDiv">
+	<br />
+
+	<input type="text" id="searchText" placeholder="Search..."/>
+	<button type="button" id="searchContactsButton" class="buttons" onclick="searchContacts();"> Search Contacts </button><br />
+	<span id="colorSearchResult"></span>
+	<p id="colorList">
+	</p><br /><br />
+
+	<input type="text" id="firstNameField" placeholder="First name">
+	<input type="text" id="lastNameField" placeholder="Last name">
+	<input type="text" id="phoneNumberField" placeholder="Phone number">
+	<input type="text" id="emailField" placeholder="Email">
+
+	<button type="button" id="saveContactButton" class="buttons" onclick="saveContact();"> Save Contact </button><br />
+	
+	<span id="saveContactResult"></span>
+</div>
+
+</body>
+</html>
