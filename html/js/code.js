@@ -249,7 +249,7 @@ function loadCookie() {
 		const cookie = cookies[i]
 		const splitText = cookie.split('=')
 
-		switch (splitText[0]) {
+		switch (splitText[0].trim()) {
 			case 'firstName':
 				firstName = splitText[1]
 				break
