@@ -186,8 +186,42 @@ function searchColor()
 }
 
 // Contact logic
-function searchContacts() {
-	console.log("search contact hit")
+async function searchContacts() {
+	if (userId < 1) return
+	const resultText = document.getElementById('searchContactResult')
+
+	// Get data from fields
+	const query = document.getElementById('searchText')
+
+	// Make sure it isn't empty
+	if (query.trim() === '') {
+		resultText.innerHTML = 'Please fill out the search field'
+		return
+	}
+
+	resultText.innerHTML = 'Adding...'
+
+	// Grab results from server
+	const payload = { search: query, userID: userId }
+	url = urlBase + '/SearchContact' + extension
+	try {
+		const rawResponse = await fetch(url, {
+			method: 'POST',
+			body: JSON.stringify(payload),
+			headers: {
+				'Content-type': 'application.json; charset=UTF-8',
+			},
+		})
+		if (!rawResponse.ok) throw Error(rawResponse.statusText)
+		const result = await rawResponse.json()
+
+		// Load results into table
+		document.getElementById('contactList').innerHTML = JSON.stringify(result)
+	} catch (e) {
+		console.error("Failed to search contacts on server")
+		console.error(e)
+		resultText.innerHTML = 'There was an error processing your request, please try again later'
+	}
 }
 
 async function saveContact() {
@@ -195,9 +229,9 @@ async function saveContact() {
 	const resultText = document.getElementById('saveContactResult')
 
 	// Get data from fields
-	const name = document.getElementById("nameField").value
-	const phone = document.getElementById("phoneNumberField").value
-	const email = document.getElementById("emailField").value
+	const name = document.getElementById('nameField').value
+	const phone = document.getElementById('phoneNumberField').value
+	const email = document.getElementById('emailField').value
 
 	// Make sure none are empty
 	if (name.trim() === '' || email.trim() === '' || phone.trim() === '') {
@@ -205,7 +239,7 @@ async function saveContact() {
 		return
 	}
 
-	resultText.innerHTML = "Adding..."
+	resultText.innerHTML = 'Adding...'
 	clearTimeout(saveContactTimeoutId)
 
 	// Push request to server
@@ -222,9 +256,9 @@ async function saveContact() {
 		if (!rawResponse.ok) throw Error(rawResponse.statusText)
 
 		// Clear fields
-		document.getElementById("nameField").value = ''
-		document.getElementById("phoneNumberField").value = ''
-		document.getElementById("emailField").value = ''
+		document.getElementById('nameField').value = ''
+		document.getElementById('phoneNumberField').value = ''
+		document.getElementById('emailField').value = ''
 
 		// Display success message
 		resultText.innerHTML = 'Contact added!'
@@ -232,7 +266,7 @@ async function saveContact() {
 	} catch (e) {
 		console.error('Failed to add contact')
 		console.error(e)
-		resultText.innerHTML = 'There was an error contacting the server, please try again later'
+		resultText.innerHTML = 'There was an error processing your request, please try again later'
 	}
 }
 
