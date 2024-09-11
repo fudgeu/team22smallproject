@@ -185,8 +185,41 @@ function searchContacts() {
 	console.log("search contact hit")
 }
 
-function saveContact() {
-	console.log("save contact hit")
+async function saveContact() {
+	if (userId < 1) return
+
+	// Get data from fields
+	const name = document.getElementById("nameField").value
+	const phone = document.getElementById("phoneNumberField").value
+	const email = document.getElementById("emailField").value
+
+	// Make sure none are empty
+	if (name.trim() === '' || email.trim() === '' || phone.trim() === '') {
+		document.getElementById('saveContactResult').innerHTML = 'Please fill out all fields'
+		return
+	}
+
+	// Push request to server
+	const payload = { name, phone, email, userId }
+	const url = urlBase + '/Save.' + extension
+	try {
+		const rawResponse = fetch(url, {
+			method: 'POST',
+			body: JSON.stringify(payload),
+			headers: {
+				'Content-type': 'application.json; charset=UTF-8',
+			},
+		})
+
+		// Clear fields
+		document.getElementById("nameField").value = ''
+		document.getElementById("phoneNumberField").value = ''
+		document.getElementById("emailField").value = ''
+	} catch (e) {
+		console.error('Failed to add contact')
+		console.error(e)
+		document.getElementById('saveContactResult').innerHTML = 'There was an error contacting the server, please try again later'
+	}
 }
 
 // Cookie logic
