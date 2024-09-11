@@ -242,7 +242,7 @@ function loadCookie() {
 	const [firstNameRaw, lastnameRaw, userIdRaw, _] = document.cookie.split(';')
 	firstName = firstNameRaw.split('=')[1] ?? 'Unknown'
 	lastName = lastnameRaw.split('=')[1] ?? 'User'
-	userId = userIdRaw.split('=')[1] ?? -1
+	userId = parseInt(userIdRaw.split('=')[1]) ?? -1
 
 	if (userId < 0) { // Kick back to login screen if cookie is invalid
 		window.location.href = "index.html"
