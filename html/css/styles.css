@@ -1,5 +1,6 @@
 body 
 {
+    background-size: 100% auto;
     background-color: #1b2125;
     background-image: url(../images/sky.jpg);
     background-blend-mode: lighten;
