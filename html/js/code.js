@@ -203,7 +203,7 @@ async function searchContacts() {
 
 	// Grab results from server
 	const payload = { search: query, userID: userId }
-	url = urlBase + '/SearchContact' + extension
+	url = urlBase + '/SearchContact.' + extension
 	try {
 		const rawResponse = await fetch(url, {
 			method: 'POST',
