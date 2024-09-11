@@ -81,8 +81,8 @@ async function doLogin() {
 
 		firstName = result.firstName
 		lastName = result.lastName
-		userId = result.userId
-		
+		userId = result.id
+
 		saveCookie()
 		window.location.href = 'color.html'
 	} catch (e) {
@@ -203,7 +203,7 @@ async function saveContact() {
 
 	// Push request to server
 	const payload = { name, phone, email, userId }
-	const url = urlBase + '/Save.' + extension
+	const url = urlBase + '/SaveContact.' + extension
 	try {
 		const rawResponse = fetch(url, {
 			method: 'POST',
