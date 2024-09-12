@@ -232,7 +232,7 @@ async function searchContacts() {
 
 		// Load results into table
 		displayedContacts = result.results.map(contact => {
-			return contact.split(',')
+			return { info: contact.split(','), editing: false, editIds: [] }
 		})
 
 		// Render
@@ -319,7 +319,8 @@ async function onClickDeleteContact(name, phone, email) {
 		}
 
 		// Contact removed on server, remove from table
-		displayedContacts = displayedContacts.filter(([n, p, e]) => {
+		displayedContacts = displayedContacts.filter((entry) => {
+			const [n, p, e] = entry.info
 			return n !== name || p !== phone || e != email
 		})
 
@@ -331,6 +332,27 @@ async function onClickDeleteContact(name, phone, email) {
 		console.error(e)
 		resultText.innerHTML = 'There was an error processing your request, please try again later'
 	}
+}
+
+function onClickEditContact(name, phone, email) {
+	// Find entry and mark as editing
+	displayedContacts.forEach((entry) => {
+		if (entry.info[0] !== name || entry.info[1] !== phone || entry.info[2] !== email) return
+		entry.editing = true
+	})
+
+	renderTable()
+}
+
+function onClickCancelEditContact(name, phone, email) {
+	// Find entry and unmark as editing
+	displayedContacts.forEach((entry) => {
+		if (entry.info[0] !== name || entry.info[1] !== phone || entry.info[2] !== email) return
+		entry.editing = false
+		entry.editIds = []
+	})
+
+	renderTable()
 }
 
 // Table rendering logic
@@ -345,7 +367,35 @@ function renderTable() {
 	}
 
 	// Render contents of table
-	contactList.innerHTML = displayedContacts.map(splitText => {
+	contactList.innerHTML = displayedContacts.map(entry => {
+		const splitText = entry.info
+
+		if (entry.editing) {
+			if (entry.editIds[0] === null || entry.editIds[1] === null || entry.editIds[2] === null) {
+				entry.editIds[0] = Math.random().toString()
+				entry.editIds[1] = Math.random().toString()
+				entry.editIds[2] = Math.random().toString()
+			}
+			const id1 = entry.editIds[0]
+			const id2 = entry.editIds[1]
+			const id3 = entry.editIds[2]
+
+			return `
+			<tr>
+				<td><input id="${id1}" type="text" value="${splitText[0]}" /></td>
+				<td><input id="${id2}" type="text" value="${splitText[1]}" /></td>
+				<td><input id="${id3}" type="text" value="${splitText[2]}" /></td>
+				<td>
+					<button onClick="onClickCancelEditContact('${splitText[0]}', '${splitText[1]}', '${splitText[2]}')">
+						Edit
+					</button>
+					<button onClick="onClickSaveContactsEdits('${splitText[0]}', '${splitText[1]}', '${splitText[2]}')">
+						Delete
+					</button>
+				</td>
+			</tr>`
+		}
+
 		return `
 			<tr>
 				<td>${splitText[0]}</td>
