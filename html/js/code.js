@@ -111,83 +111,6 @@ function doLogout() {
 	window.location.href = 'index.html'
 }
 
-// Color logic (to be removed)
-function addColor()
-{
-	let newColor = document.getElementById("colorText").value;
-	document.getElementById("colorAddResult").innerHTML = "";
-
-	let tmp = {color:newColor,userId,userId};
-	let jsonPayload = JSON.stringify( tmp );
-
-	let url = urlBase + '/AddColor.' + extension;
-	
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try
-	{
-		xhr.onreadystatechange = function() 
-		{
-			if (this.readyState == 4 && this.status == 200) 
-			{
-				document.getElementById("colorAddResult").innerHTML = "Color has been added";
-			}
-		};
-		xhr.send(jsonPayload);
-	}
-	catch(err)
-	{
-		document.getElementById("colorAddResult").innerHTML = err.message;
-	}
-	
-}
-
-function searchColor()
-{
-	let srch = document.getElementById("searchText").value;
-	document.getElementById("colorSearchResult").innerHTML = "";
-	
-	let colorList = "";
-
-	let tmp = {search:srch,userId:userId};
-	let jsonPayload = JSON.stringify( tmp );
-
-	let url = urlBase + '/SearchColors.' + extension;
-	
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try
-	{
-		xhr.onreadystatechange = function() 
-		{
-			if (this.readyState == 4 && this.status == 200) 
-			{
-				document.getElementById("colorSearchResult").innerHTML = "Color(s) has been retrieved";
-				let jsonObject = JSON.parse( xhr.responseText );
-				
-				for( let i=0; i<jsonObject.results.length; i++ )
-				{
-					colorList += jsonObject.results[i];
-					if( i < jsonObject.results.length - 1 )
-					{
-						colorList += "<br />\r\n";
-					}
-				}
-				
-				document.getElementsByTagName("p")[0].innerHTML = colorList;
-			}
-		};
-		xhr.send(jsonPayload);
-	}
-	catch(err)
-	{
-		document.getElementById("colorSearchResult").innerHTML = err.message;
-	}
-	
-}
-
 // Contact logic
 async function searchContacts() {
 	if (userId < 1) return
@@ -421,9 +344,7 @@ function renderTable() {
 		const splitText = entry.info
 
 		if (entry.editing) {
-			console.log("test")
 			if (entry.editIds.length === 0) {
-				console.log("test2")
 				entry.editIds[0] = Math.random().toString()
 				entry.editIds[1] = Math.random().toString()
 				entry.editIds[2] = Math.random().toString()
@@ -434,9 +355,9 @@ function renderTable() {
 
 			return `
 			<tr>
-				<td><input id="${id1}" type="text" value="${splitText[0]} placeholder="Name" /></td>
-				<td><input id="${id2}" type="text" value="${splitText[1]}" placeholder="Phone" /></td>
-				<td><input id="${id3}" type="text" value="${splitText[2]}" placeholder="Email" /></td>
+				<td><input id="${id1}" type="text" value="${splitText[0]}" placeholder="Name" /></td>
+				<td><input id="${id2}" type="tel" value="${splitText[1]}" placeholder="Phone" /></td>
+				<td><input id="${id3}" type="email" value="${splitText[2]}" placeholder="Email" /></td>
 				<td>
 					<button onClick="cancelEditContact('${splitText[0]}', '${splitText[1]}', '${splitText[2]}')">
 						Cancel
