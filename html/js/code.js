@@ -6,6 +6,7 @@ let firstName = "";
 let lastName = "";
 
 let saveContactTimeoutId = null
+let contactListTimeoutId = null
 
 let displayedContacts = []
 
@@ -294,6 +295,7 @@ async function onClickDeleteContact(name, phone, email) {
 	if (userId < 1) return
 	const resultText = document.getElementById('searchContactResult')
 
+	clearTimeout(contactListTimeoutId)
 	resultText.innerHTML = 'Deleting...'
 
 	// Request server to delete
@@ -323,6 +325,7 @@ async function onClickDeleteContact(name, phone, email) {
 
 		renderTable()
 		resultText.innerHTML = 'Deleted!'
+		contactListTimeoutId = setTimeout(() => resultText.innerHTML = '', 3000)
 	} catch (e) {
 		console.error("Error while attempting to delete contact")
 		console.error(e)
