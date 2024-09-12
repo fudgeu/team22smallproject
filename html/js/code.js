@@ -298,7 +298,7 @@ async function onClickDeleteContact(name, phone, email) {
 
 	// Request server to delete
 	const payload = { name, phone, email, userID: userId }
-	const url = urlBase + 'DeleteContact.' + extension
+	const url = urlBase + '/DeleteContact.' + extension
 	try {
 		const rawResponse = await fetch(url, {
 			method: 'POST',
