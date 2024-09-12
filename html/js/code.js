@@ -294,6 +294,8 @@ async function onClickDeleteContact(name, phone, email) {
 	if (userId < 1) return
 	const resultText = document.getElementById('searchContactResult')
 
+	resultText.innerHTML = 'Deleting...'
+
 	// Request server to delete
 	const payload = { name, phone, email, userID: userId }
 	const url = urlBase + 'DeleteContact.' + extension
@@ -320,6 +322,7 @@ async function onClickDeleteContact(name, phone, email) {
 		})
 
 		renderTable()
+		resultText.innerHTML = 'Deleted!'
 	} catch (e) {
 		console.error("Error while attempting to delete contact")
 		console.error(e)
@@ -346,10 +349,10 @@ function renderTable() {
 				<td>${splitText[1]}</td>
 				<td>${splitText[2]}</td>
 				<td>
-					<button onClick="onClickEditContact(${splitText[0]}, ${splitText[1]}, ${splitText[2]})">
+					<button onClick="onClickEditContact('${splitText[0]}', '${splitText[1]}', '${splitText[2]}')">
 						Edit
 					</button>
-					<button onClick="onClickDeleteContact(${splitText[0]}, ${splitText[1]}, ${splitText[2]})">
+					<button onClick="onClickDeleteContact('${splitText[0]}', '${splitText[1]}', '${splitText[2]}')">
 						Delete
 					</button>
 				</td>
