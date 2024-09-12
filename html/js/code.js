@@ -334,7 +334,7 @@ async function onClickDeleteContact(name, phone, email) {
 	}
 }
 
-function onClickEditContact(name, phone, email) {
+function startEditContact(name, phone, email) {
 	// Find entry and mark as editing
 	displayedContacts.forEach((entry) => {
 		if (entry.info[0] !== name || entry.info[1] !== phone || entry.info[2] !== email) return
@@ -344,7 +344,7 @@ function onClickEditContact(name, phone, email) {
 	renderTable()
 }
 
-function onClickCancelEditContact(name, phone, email) {
+function cancelEditContact(name, phone, email) {
 	// Find entry and unmark as editing
 	displayedContacts.forEach((entry) => {
 		if (entry.info[0] !== name || entry.info[1] !== phone || entry.info[2] !== email) return
@@ -353,6 +353,56 @@ function onClickCancelEditContact(name, phone, email) {
 	})
 
 	renderTable()
+}
+
+async function saveContactEdits(name, phone, email) {
+	if (userId < 1) return
+	const resultText = document.getElementById('searchContactResult')
+
+	// Get data from textboxes
+	const entry = displayedContacts.find((e) => e.info[0] === name && e.info[1] === phone && e.info[2] === email)
+	if (!entry) return
+	const newName = document.getElementById(entry.editIds[0]).value ?? name
+	const newPhone = document.getElementById(entry.editIds[1]).value ?? phone
+	const newEmail = document.getElementById(entry.editIds[2]).value ?? email
+
+	clearTimeout(contactListTimeoutId)
+	resultText.innerHTML = 'Updating...'
+
+	// Push request to server
+	const payload = {
+		name, phone, email,
+		newname: newName, newphone: newPhone, newemail: newEmail,
+		userId,
+	}
+
+	const url = urlBase + '/EditContact.' + extension
+	try {
+		const rawResponse = await fetch(url, {
+			method: 'POST',
+			body: JSON.stringify(payload)
+		})
+		if (!rawResponse.ok) throw Error(rawResponse.statusText)
+		const result = await rawResponse.json()
+
+		// Check for error
+		if (result.error.trim() !== '') {
+			resultText.innerHTML = `Could not edit contact: ${result.error}`
+			return
+		}
+
+		// Update local entry in table and disable editing
+		entry.info = [newName, newPhone, newEmail]
+		cancelEditContact(newName, newPhone, newEmail)
+
+		// Update result text
+		resultText.innerHTML = 'Updated!'
+		contactListTimeoutId = setTimeout(() => resultText.innerHTML = '', 3000)
+	} catch (e) {
+		console.error('Error while attempting to edit contact')
+		console.error(e)
+		result.innerHTML = 'There was an error processing your request, please try again later'
+	}
 }
 
 // Table rendering logic
@@ -386,11 +436,11 @@ function renderTable() {
 				<td><input id="${id2}" type="text" value="${splitText[1]}" /></td>
 				<td><input id="${id3}" type="text" value="${splitText[2]}" /></td>
 				<td>
-					<button onClick="onClickCancelEditContact('${splitText[0]}', '${splitText[1]}', '${splitText[2]}')">
-						Edit
+					<button onClick="cancelEditContact('${splitText[0]}', '${splitText[1]}', '${splitText[2]}')">
+						Cancel
 					</button>
-					<button onClick="onClickSaveContactsEdits('${splitText[0]}', '${splitText[1]}', '${splitText[2]}')">
-						Delete
+					<button onClick="saveContactEdits('${splitText[0]}', '${splitText[1]}', '${splitText[2]}')">
+						Save
 					</button>
 				</td>
 			</tr>`
@@ -402,10 +452,10 @@ function renderTable() {
 				<td>${splitText[1]}</td>
 				<td>${splitText[2]}</td>
 				<td>
-					<button onClick="onClickEditContact('${splitText[0]}', '${splitText[1]}', '${splitText[2]}')">
+					<button onClick="startEditContact('${splitText[0]}', '${splitText[1]}', '${splitText[2]}')">
 						Edit
 					</button>
-					<button onClick="onClickDeleteContact('${splitText[0]}', '${splitText[1]}', '${splitText[2]}')">
+					<button onClick="deleteContact('${splitText[0]}', '${splitText[1]}', '${splitText[2]}')">
 						Delete
 					</button>
 				</td>
