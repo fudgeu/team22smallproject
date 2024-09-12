@@ -7,6 +7,8 @@ let lastName = "";
 
 let saveContactTimeoutId = null
 
+let displayedContacts = []
+
 function markRegistrationComplete() {
 	document.getElementById("registerFirstName").remove();
 	document.getElementById("registerLastName").remove();
@@ -228,13 +230,12 @@ async function searchContacts() {
 		}
 
 		// Load results into table
-		contactList.innerHTML = result.results.map(contact => {
-			splitText = contact.split(',')
-			return `<tr><td>${splitText[0]}</td><td>${splitText[1]}</td><td>${splitText[2]}</td></tr>`
-		}).join('')
+		displayedContacts = result.results.map(contact => {
+			return contact.split(',')
+		})
 
-		// Show table
-		contactTable.style.display = 'block'
+		// Render
+		renderTable()
 	} catch (e) {
 		console.error("Failed to search contacts on server")
 		console.error(e)
@@ -287,6 +288,35 @@ async function saveContact() {
 		console.error(e)
 		resultText.innerHTML = 'There was an error processing your request, please try again later'
 	}
+}
+
+// Table rendering logic
+function renderTable() {
+	const contactTable = document.getElementById('contactTable')
+	const contactList = document.getElementById('contactList')
+
+	// Hide table if no items to show
+	if (displayedContacts.length === 0) {
+		contactTable.style.display = 'none'
+		return
+	}
+
+	// Render contents of table
+	contactList.innerHTML = displayedContacts.map(splitText => {
+		return `
+			<tr>
+				<td>${splitText[0]}</td>
+				<td>${splitText[1]}</td>
+				<td>${splitText[2]}</td>
+				<td>
+					<button onClick="onClickEdit()">Edit</button>
+					<button onClick="onClickDelete()">Delete</button>
+				</td>
+			</tr>`
+	}).join('')
+
+	// Show table
+	contactTable.style.display = 'block'
 }
 
 // Cookie logic
