@@ -39,12 +39,12 @@
 	
 	<br /><br />
 
-	<form onSubmit="saveContact(e)">
+	<form onsubmit="saveContact(event)">
 		<input type="text" id="nameField" placeholder="Name" required="true">
 		<input type="tel" id="phoneNumberField" placeholder="Phone number" required="true">
 		<input type="email" id="emailField" placeholder="Email" required="true">
 
-		<button type="submit" id="saveContactButton" class="buttons" onclick="saveContact();"> Save Contact </button><br />
+		<button type="submit" id="saveContactButton" class="buttons"> Save Contact </button><br />
 	</form>
 	
 	<span id="saveContactResult"></span>

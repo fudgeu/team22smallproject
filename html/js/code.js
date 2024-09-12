@@ -168,8 +168,8 @@ async function searchContacts() {
 	}
 }
 
-async function saveContact(e) {
-	e.preventDefault()
+async function saveContact(event) {
+	event.preventDefault()
 	if (userId < 1) return
 	const resultText = document.getElementById('saveContactResult')
 
