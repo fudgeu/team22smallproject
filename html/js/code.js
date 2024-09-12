@@ -422,7 +422,7 @@ function renderTable() {
 
 		if (entry.editing) {
 			console.log("test")
-			if (entry.editIds.length() === 0) {
+			if (entry.editIds.length === 0) {
 				console.log("test2")
 				entry.editIds[0] = Math.random().toString()
 				entry.editIds[1] = Math.random().toString()
