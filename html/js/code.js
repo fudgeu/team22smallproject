@@ -290,6 +290,43 @@ async function saveContact() {
 	}
 }
 
+async function onClickDeleteContact(name, phone, email) {
+	if (userId < 1) return
+	const resultText = document.getElementById('searchContactResult')
+
+	// Request server to delete
+	const payload = { name, phone, email, userID: userId }
+	const url = urlBase + 'DeleteContact.' + extension
+	try {
+		const rawResponse = await fetch(url, {
+			method: 'POST',
+			body: JSON.stringify(payload),
+			headers: {
+				'Content-type': 'application.json; charset=UTF-8',
+			}
+		})
+		if (!rawResponse.ok) throw Error(rawResponse.statusText)
+		const result = await rawResponse.json()
+
+		// Check if there was error while deleting
+		if (result.error.trim() !== '') {
+			resultText.innerHTML = `Could not delete contact: ${result.error}`
+			return
+		}
+
+		// Contact removed on server, remove from table
+		displayedContacts = displayedContacts.filter(([n, p, e]) => {
+			return n !== name || p !== phone || e != email
+		})
+
+		renderTable()
+	} catch (e) {
+		console.error("Error while attempting to delete contact")
+		console.error(e)
+		resultText.innerHTML = 'There was an error processing your request, please try again later'
+	}
+}
+
 // Table rendering logic
 function renderTable() {
 	const contactTable = document.getElementById('contactTable')
@@ -309,8 +346,12 @@ function renderTable() {
 				<td>${splitText[1]}</td>
 				<td>${splitText[2]}</td>
 				<td>
-					<button onClick="onClickEdit()">Edit</button>
-					<button onClick="onClickDelete()">Delete</button>
+					<button onClick="onClickEditContact(${splitText[0]}, ${splitText[1]}, ${splitText[2]})">
+						Edit
+					</button>
+					<button onClick="onClickDeleteContact(${splitText[0]}, ${splitText[1]}, ${splitText[2]})">
+						Delete
+					</button>
 				</td>
 			</tr>`
 	}).join('')
