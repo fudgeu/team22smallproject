@@ -421,7 +421,9 @@ function renderTable() {
 		const splitText = entry.info
 
 		if (entry.editing) {
-			if (entry.editIds[0] === null || entry.editIds[1] === null || entry.editIds[2] === null) {
+			console.log("test")
+			if (entry.editIds.length() === 0) {
+				console.log("test2")
 				entry.editIds[0] = Math.random().toString()
 				entry.editIds[1] = Math.random().toString()
 				entry.editIds[2] = Math.random().toString()
@@ -432,9 +434,9 @@ function renderTable() {
 
 			return `
 			<tr>
-				<td><input id="${id1}" type="text" value="${splitText[0]}" /></td>
-				<td><input id="${id2}" type="text" value="${splitText[1]}" /></td>
-				<td><input id="${id3}" type="text" value="${splitText[2]}" /></td>
+				<td><input id="${id1}" type="text" value="${splitText[0]} placeholder="Name" /></td>
+				<td><input id="${id2}" type="text" value="${splitText[1]}" placeholder="Phone" /></td>
+				<td><input id="${id3}" type="text" value="${splitText[2]}" placeholder="Email" /></td>
 				<td>
 					<button onClick="cancelEditContact('${splitText[0]}', '${splitText[1]}', '${splitText[2]}')">
 						Cancel
