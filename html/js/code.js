@@ -297,7 +297,7 @@ async function saveContactEdits(name, phone, email) {
 	const payload = {
 		name, phone, email,
 		newname: newName, newphone: newPhone, newemail: newEmail,
-		userId,
+		userID: userId,
 	}
 
 	const url = urlBase + '/EditContact.' + extension
