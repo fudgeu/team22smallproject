@@ -159,7 +159,7 @@ input{
     letter-spacing: 0.10em;
     padding: 10px;
 }
-input[type="text"],input[type="password"]{
+input[type="text"],input[type="password"],input[type="tel"],input[type="email"] {
     border-radius: 25px;
     margin-bottom: 2%;
     font-family: 'Ubuntu';

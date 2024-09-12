@@ -39,11 +39,13 @@
 	
 	<br /><br />
 
-	<input type="text" id="nameField" placeholder="Name">
-	<input type="tel" id="phoneNumberField" placeholder="Phone number">
-	<input type="email" id="emailField" placeholder="Email">
+	<form onSubmit="saveContact(e)">
+		<input type="text" id="nameField" placeholder="Name" required="true">
+		<input type="tel" id="phoneNumberField" placeholder="Phone number" required="true">
+		<input type="email" id="emailField" placeholder="Email" required="true">
 
-	<button type="button" id="saveContactButton" class="buttons" onclick="saveContact();"> Save Contact </button><br />
+		<button type="submit" id="saveContactButton" class="buttons" onclick="saveContact();"> Save Contact </button><br />
+	</form>
 	
 	<span id="saveContactResult"></span>
 </div>
