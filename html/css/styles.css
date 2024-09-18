@@ -206,18 +206,19 @@ a:hover{
     font-size: 20px;
     padding: 10px;
     border-radius: 20px;
-    backdrop-filter: blur(5px);
     vertical-align: top;
 }
 th
 {
     padding: 10px;
     padding-left: 25px;
+    border: solid 1px #b5e48c;
 }
 td
 {
     padding: 10px;
     padding-left: 25px;
+    border-left: solid 1px #b5e48c;
 }
 #searchText
 {
