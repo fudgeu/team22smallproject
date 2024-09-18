@@ -85,18 +85,17 @@ a:hover{
 
 #accessUIDiv
 {
-    width: 60%;
+    width: 50%;
     font-size: 20px;
-    margin: auto;
+    margin-left: 7%;
     margin-top: 3%;
     padding: 10px;
     background-color: rgba(41, 131, 38, 0.1);
-    border-radius: 100px;
+    border-radius: 20px;
     text-align: center;
     box-shadow: 0 0px 5px #52b69a, 0 5px 50px #52b69a;
     backdrop-filter: blur(5px);
     vertical-align: top;
-    margin-left: 5%;
 }
 
 .buttons
@@ -196,6 +195,30 @@ a:hover{
     position: relative;
     left: 35%;
 }
+.contactsPretty
+{
+    color: #b5e48c;
+    font-family: Ubuntu;
+    margin-top: 10px;
+    width: 90%;
+    font-size: 20px;
+    padding: 10px;
+    background-color: rgba(41, 131, 38, 0.1);
+    border-radius: 20px;
+    box-shadow: 0 0px 5px #52b69a, 0 5px 50px #52b69a;
+    backdrop-filter: blur(5px);
+    vertical-align: top;
+}
+th
+{
+    padding: 10px;
+    padding-left: 25px;
+}
+td
+{
+    padding: 10px;
+    padding-left: 25px;
+}
 #searchText
 {
 	font-size: 20px;
@@ -205,11 +228,13 @@ a:hover{
 	font-size: 30px;
 }
 
-input{
+input
+{
     letter-spacing: 0.10em;
     padding: 10px;
 }
-input[type="text"],input[type="password"],input[type="tel"],input[type="email"] {
+input[type="text"],input[type="password"],input[type="tel"],input[type="email"] 
+{
     border-radius: 25px;
     margin-bottom: 2%;
     font-family: 'Ubuntu';

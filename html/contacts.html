@@ -7,11 +7,9 @@
 			<link href="css/styles.css" rel="stylesheet">	
 			<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 		
-		
 		<script type="text/javascript">
 			document.addEventListener('DOMContentLoaded', onPrivilegedPageLoaded, false);
 		</script>
-		
 	</head>
 
 	<body>
@@ -21,42 +19,45 @@
 			<h1 style="position: relative; bottom: 50px; right: 50px;" id="title">Manager</h1>
 		</div>
 		<div style="position: absolute; left: 50%; bottom: 80%;" id="loggedInDiv">
-			<span class="beforeUserName">Welcome,  </span><span id="userName"></span><br />
+			<span class="beforeUserName"><img src="images/blob-derpy.gif" style="width: 5%;"> Welcome,  </span><span id="userName">Test Test</span><br />
 			<button type="button" id="logoutButton" class="buttons" onclick="doLogout();"> LOG OUT <img style="width:15%; position: relative; top:5px;"src="images/door.png"></button>
 		</div>
 		<hr style="width: 90%;">
 
-		<!--For this div, I deleted it's "accessUIDiv" id and assigned a class. Not sure if .JS is reliant on prior-->
-		<div class="createContactsDiv" style="display: inline-block;">
-			<br />
-			<span class="newContactTitle" style="margin-bottom: 5%;"> Create New Contact +</span>
-			<form onsubmit="saveContact(event)">
-				<input type="text" class="contactInputs" id="nameField" placeholder="Name" required="true">
-				<input type="tel" class="contactInputs" id="phoneNumberField" placeholder="Phone number" required="true">
-				<input type="email" class="contactInputs" id="emailField" placeholder="Email" required="true">
-				<button type="submit" id="saveContactButton" class="buttons"> Save </button><br />
-			</form>
-			
-			<span id="saveContactResult"></span>
-		</div>
+		<div>
+			<!--For this div, I deleted it's "accessUIDiv" id and assigned a class. Not sure if .JS is reliant on prior-->
+			<div class="createContactsDiv" style="display: inline-block;">
+				<br />
+				<span class="newContactTitle" style="margin-bottom: 5%;"> + New Contact </span>
+				<form onsubmit="saveContact(event)">
+					<input type="text" class="contactInputs" id="nameField" placeholder="Name" required="true">
+					<input type="tel" class="contactInputs" id="phoneNumberField" placeholder="Phone Number" required="true">
+					<input type="email" class="contactInputs" id="emailField" placeholder="Email" required="true">
+					<button type="submit" id="saveContactButton" class="buttons"> Save </button><br />
+				</form>
+				
+				<span id="saveContactResult" style="color:#E2DFD2; text-shadow: 2px 2px 2px #000000;"></span>
+			</div>
 
-		<div id="accessUIDiv" style="display: inline-block;">
-			<span class="newContactTitle" style="margin-top: 2%;"> Search Contacts</span>
-			<input type="text" id="searchText" class="contactInputs" style="width: 40%;" placeholder="Enter here"/>
-			<button type="button" id="searchContactsButton" class="buttons" onclick="searchContacts();"> Search <img src="images/search.png" style="width:8%;"></button><br />
-			<span id="searchContactResult"></span>
+			<div id="accessUIDiv" style="display: inline-block;">
+				<span class="newContactTitle" style="margin-top: 2%;"> Search Contacts</span>
+				<input type="text" id="searchText" class="contactInputs" style="width: 40%;" placeholder="Enter here"/>
+				<button type="button" id="searchContactsButton" class="buttons" onclick="searchContacts();"> Search <img src="images/search.png" style="width:8%;"></button><br />
+				<span id="searchContactResult" style="color:#E2DFD2; text-shadow: 2px 2px 2px #000000;"></span>
 
-			<table id="contactTable" style="display: none">
-				<thead>
-					<th>Name</th>
-					<th>Phone Number</th>
-					<th>Email</th>
-				</thead>
-				<tbody id="contactList">
-					<!-- JS inserts contact results here -->
-				</tbody>
-			</table>
-		
+				<div class="contactsPretty">
+					<table id="contactTable" style="display: none;">
+						<thead>
+							<th>Name</th>
+							<th>Phone Number</th>
+							<th>Email</th>
+						</thead>
+						<tbody id="contactList">
+							<!-- JS inserts contact results here -->
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>
