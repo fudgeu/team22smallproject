@@ -47,6 +47,19 @@ a:hover{
     text-align: center;
     box-shadow: 0 10px 15px #52b69a, 0 20px 50px #52b69a;
 }
+.createContactsDiv
+{
+    width: 20%;
+    font-size: 20px;
+    margin-top: 2%;
+    margin-left: 5%;
+    padding: 25px;
+    background-color: rgba(41, 131, 38, 0.1);
+    border-radius: 100px;
+    text-align: center;
+    box-shadow: 0 0px 5px #52b69a, 0 5px 50px #52b69a;
+    backdrop-filter: blur(5px);
+}
 
 #registerDiv
 {
@@ -64,20 +77,27 @@ a:hover{
 #loggedInDiv
 {
     font-size: 30px;
-    width: 50%;
+    width: 30%;
     margin-left: 15%;
-    padding: 25px;
-    background-color: #99d98c;
-    box-shadow: 2px 2px 2px #99d98c;
+    padding: 20px;
+    backdrop-filter: blur(5px);
 }
 
 #accessUIDiv
 {
-    font-size: 30px;
-    width: 70%;
-    margin-left: 15%;
-    padding: 25px;
-    background-color: #b2b2b2;
+    width: 60%;
+    font-size: 20px;
+    margin: auto;
+    margin-top: 3%;
+    padding: 10px;
+    background-color: rgba(41, 131, 38, 0.1);
+    border-radius: 100px;
+    text-align: center;
+    box-shadow: 0 0px 5px #52b69a, 0 5px 50px #52b69a;
+    backdrop-filter: blur(5px);
+    position: relative;
+    left: 5%;
+    bottom: 70%;
 }
 
 .buttons
@@ -146,9 +166,40 @@ a:hover{
     background-color: rgba(41, 131, 38, 0.1);
     color: #b5e48c;
 }
+.bInputs
+{
+    width: 250px;
+	font-size: 20px;
+    text-align: left;
+    padding-left: 10px;
+    background-color: rgba(41, 131, 38, 0.1);
+    color: #b5e48c;
+}
+.contactInputs
+{
+    width: 250px;
+	font-size: 20px;
+    text-align: left;
+    padding-left: 10px;
+    background-color: rgba(41, 131, 38, 0.1);
+    color: #b5e48c;
+    margin: 3%;
+}
+#saveContactButton
+{
+    display: block;
+    width: 30%;
+    margin-top: 15px;
+    margin-bottom: 25px;
+    padding: 10px;
+    border-radius: 15px;
+    font-size: 25px;
+    position: relative;
+    left: 35%;
+}
 #searchText
 {
-	font-size: 30px;
+	font-size: 20px;
 }
 #colorText
 {
@@ -183,6 +234,16 @@ input[type="text"],input[type="password"],input[type="tel"],input[type="email"] 
     font-family: 'Ubuntu';
     color: #d9ed92;;
 }
+.newContactTitle
+{
+    display: inline-block;
+    font-size: 30px;
+    width: 90%;
+    text-align: center;
+    font-family: 'Ubuntu';
+    color: #d9ed92;
+    text-shadow: 2px 2px 2px #184e77;
+}
 
 #loginResult{
     display: inline-block;
@@ -194,17 +255,40 @@ input[type="text"],input[type="password"],input[type="tel"],input[type="email"] 
     font-family: 'Ubuntu';
     color: #95060a;
 }
-
-#userName{
-    display: inline-block;
+.beforeUserName
+{
+    display: inline;
     width: 80%;
     margin-left: 10%;
+    font-size: 30px;
     text-align: center;
+    font-family: 'Ubuntu';
+    color: #d9ed92;
 }
-
+#userName{
+    display: inline;
+    width: 80%;
+    font-size: 30px;
+    font-family: 'Ubuntu';
+    color: #d9ed92;
+}
+#searchContactsButton{
+    padding: 10px;
+    border-radius: 15px;
+    font-size: 25px;
+    width: 30%;
+}
 #logoutButton{
-    width: 20%;
-    margin-left: 40%;
+    width: 30%;
+    margin-top: 15px;
+    margin-bottom: 25px;
+    padding: 10px;
+    border-radius: 15px;
+    font-size: 25px;
+    background-color:rgb(226, 235, 243);
+    color:rgb(119, 34, 34);
+    position: relative;
+    left:70px;
 }
 #loginButton{
     width: 40%;
