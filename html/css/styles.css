@@ -34,6 +34,29 @@ a{
 a:hover{
     color:#1a759f;
 }
+.editButton, .cancelButton
+{
+    padding: 7px;
+    border-radius: 5px;
+}
+.removeButton
+{
+    padding: 7px;
+    border-radius: 5px;
+    color:#420b0b;
+    background-color: #c76b6b;
+}
+.saveButton
+{
+    padding: 7px;
+    border-radius: 5px;
+    color: #0a3b0c;
+    background-color: #80d67c;
+}
+.editButton:hover, .cancelButton:hover, .removeButton:hover, .saveButton:hover
+{
+    background-color: #4d4d4d;
+}
 
 #loginDiv
 {
@@ -310,7 +333,8 @@ input[type="text"],input[type="password"],input[type="tel"],input[type="email"]
     margin-bottom: 25px;
     padding: 10px;
     border-radius: 15px;
-    font-size: 25px;
+    font-size: 20px;
+    font-weight: bold;
     background-color:rgb(226, 235, 243);
     color:rgb(119, 34, 34);
     position: relative;

@@ -360,11 +360,11 @@ function renderTable() {
 				<td><input id="${id2}" type="tel" value="${splitText[1]}" placeholder="Phone" /></td>
 				<td><input id="${id3}" type="email" value="${splitText[2]}" placeholder="Email" /></td>
 				<td>
-					<button onClick="cancelEditContact('${splitText[0]}', '${splitText[1]}', '${splitText[2]}')">
+					<button class="editButton" onClick="cancelEditContact('${splitText[0]}', '${splitText[1]}', '${splitText[2]}')">
 						Cancel
 					</button>
-					<button onClick="saveContactEdits('${splitText[0]}', '${splitText[1]}', '${splitText[2]}')">
-						Save
+					<button class="saveButton" onClick="saveContactEdits('${splitText[0]}', '${splitText[1]}', '${splitText[2]}')">
+						<b>Save</b>
 					</button>
 				</td>
 			</tr>`
@@ -376,11 +376,11 @@ function renderTable() {
 				<td>${splitText[1]}</td>
 				<td>${splitText[2]}</td>
 				<td>
-					<button onClick="startEditContact('${splitText[0]}', '${splitText[1]}', '${splitText[2]}')">
+					<button class="editButton" onClick="startEditContact('${splitText[0]}', '${splitText[1]}', '${splitText[2]}')">
 						Edit
 					</button>
-					<button onClick="onClickDeleteContact('${splitText[0]}', '${splitText[1]}', '${splitText[2]}')">
-						Delete
+					<button class="removeButton" onClick="onClickDeleteContact('${splitText[0]}', '${splitText[1]}', '${splitText[2]}')">
+						<b>X</b>
 					</button>
 				</td>
 			</tr>`
