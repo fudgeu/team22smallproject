@@ -379,7 +379,7 @@ function renderTable() {
 					<button onClick="startEditContact('${splitText[0]}', '${splitText[1]}', '${splitText[2]}')">
 						Edit
 					</button>
-					<button onClick="deleteContact('${splitText[0]}', '${splitText[1]}', '${splitText[2]}')">
+					<button onClick="onClickDeleteContact('${splitText[0]}', '${splitText[1]}', '${splitText[2]}')">
 						Delete
 					</button>
 				</td>
