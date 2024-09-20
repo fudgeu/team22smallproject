@@ -215,10 +215,15 @@ async function saveContact(event) {
 	}
 }
 
+function confirmDeletion(name, phone, email){
+	let decision= confirm("Are you sure you want to delete this contact?");
+	if (decision == true)
+        	onClickDeleteContact(name, phone, email);
+}
 async function onClickDeleteContact(name, phone, email) {
 	if (userId < 1) return
 	const resultText = document.getElementById('searchContactResult')
-
+        
 	clearTimeout(contactListTimeoutId)
 	resultText.innerHTML = 'Deleting...'
 
@@ -382,7 +387,7 @@ function renderTable() {
 					<button class="editButton" onClick="startEditContact('${splitText[0]}', '${splitText[1]}', '${splitText[2]}')">
 					
 					</button>
-					<button class="removeButton" onClick="onClickDeleteContact('${splitText[0]}', '${splitText[1]}', '${splitText[2]}')">
+					<button class="removeButton" onClick="confirmDeletion('${splitText[0]}', '${splitText[1]}', '${splitText[2]}')">
 						<b>X</b>
 					</button>
 					</div>
