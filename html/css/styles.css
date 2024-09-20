@@ -34,20 +34,60 @@ a{
 a:hover{
     color:#1a759f;
 }
-.editButton, .cancelButton
+.editCancelPair
 {
+    display: flex;
+    align-items: center;
+}
+
+.editButton
+{
+    margin: 4px;
+    background-image: url("../images/edit.png");
+    background-size: 90%;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-weight: bold;
+    width: 40px;
+    height: 40px;
+    padding: 7px;
+    border-radius: 5px;
+}
+
+.cancelSavePair
+{
+    display: flex;
+    align-items: center;
+}
+.cancelButton
+{
+    font-size: 20px;
+    font-weight: bold;
+    width: 40px;
+    height: 40px;
     padding: 7px;
     border-radius: 5px;
 }
 .removeButton
 {
+    display: inline-block;
+    text-align: center;
+    width: 40px;
+    height: 40px;
     padding: 7px;
     border-radius: 5px;
+    
     color:#420b0b;
     background-color: #c76b6b;
 }
 .saveButton
 {
+    background-image:url(../images/check.png);
+    background-position: center;
+    background-size: 70%;
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 40px;
     padding: 7px;
     border-radius: 5px;
     color: #0a3b0c;
@@ -336,9 +376,11 @@ input[type="text"],input[type="password"],input[type="tel"],input[type="email"]
     font-size: 20px;
     font-weight: bold;
     background-color:rgb(226, 235, 243);
-    color:rgb(119, 34, 34);
+    color: #c76b6b;
     position: relative;
     left:70px;
+
+    -webkit-text-stroke: 1px #c41d34;
 }
 #loginButton{
     width: 40%;
