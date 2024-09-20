@@ -127,7 +127,7 @@ async function searchContacts() {
 		return
 	}
 
-	resultText.innerHTML = 'Searching...'
+	resultText.innerHTML = '<img src="../images/load.gif" style="width:5%;">Searching...'
 	contactList.innerHTML = ''
 
 	// Grab results from server
@@ -225,7 +225,7 @@ async function onClickDeleteContact(name, phone, email) {
 	const resultText = document.getElementById('searchContactResult')
         
 	clearTimeout(contactListTimeoutId)
-	resultText.innerHTML = 'Deleting...'
+	resultText.innerHTML = '<img src="../images/load.gif" style="width:5%;">Deleting...'
 
 	// Request server to delete
 	const payload = { name, phone, email, userID: userId }
