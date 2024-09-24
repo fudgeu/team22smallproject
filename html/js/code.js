@@ -18,13 +18,15 @@ function markRegistrationComplete() {
 	document.getElementById("dotImg").remove();
 	document.getElementById("dotImg2").remove();
 	document.getElementById("userImg").remove();
-	document.getElementById("keyImg").remove();
 	document.getElementById("registerButton").remove();
 	document.getElementById("inner-title2").remove();
+  document.getElementById("eyeballAnchor").remove();
+ 	document.getElementById("registerResult").innerHTML = "Registration Complete!";
+ 	document.getElementById("registerResult").style.color="#b5e48c";
 	document.getElementById("registerGif").innerHTML = '<img style="width: 50%" src="../images/yippee.gif" alt="weird thing doing a backflip"></img>'
-	document.getElementById("registerResult").innerHTML = "Registration Complete!";
-	document.getElementById("registerResult").style.color="#39ff14";
 }
+
+
 
 async function doRegister() {
 	const firstName = document.getElementById("registerFirstName").value;
@@ -55,6 +57,25 @@ async function doRegister() {
 		console.error(e)
 		document.getElementById("registerResult").innerHTML = 'Failed to register, please try again later';
 	}
+}
+
+function togglePassword(){
+  let pass = document.getElementById("loginPassword");
+  let image = document.getElementById("eyeball");
+  if (pass == null)
+    pass = document.getElementById("registerPassword");
+  
+  
+  if (pass.type == "password")
+  {
+    pass.type = "text";
+    image.src="./images/eye_open.png";
+  }
+  else if (pass.type == "text")
+  {
+    pass.type = "password"
+    image.src="./images/eye_close.png";
+  }
 }
 
 async function doLogin() {

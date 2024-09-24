@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Copius amount of inline css inbound-->
 <html lang="en-US">
 	<head>
 		<title>Galaxy Collapse</title>
@@ -9,7 +10,6 @@
 			<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 	</head>
 	<body>
-		<!-- Some lazy inline css to try to get every title thing centered-->
 		<div style="text-align: center">
 			<h1 style="margin-left: 3%; position: relative; bottom: 50px; left: 50px;" id="title">Galaxy</h1>
 			<img style="width: 300px; border-radius:500px; mix-blend-mode: lighten;" src="./images/spinning.gif" alt="spinning globe gif">
@@ -18,14 +18,19 @@
 
 		<hr style="width: 30%;">
 
-		<!-- More lazy inline css to get stuff centered. -->
 		<div id="loginDiv">
-			<span id="inner-title">L O G I N</span>
-			<img style="mix-blend-mode: lighten; width: 10%; position: relative; top: 10px;" src="./images/user.png" alt="User icon">
-			<input type="text" id="loginName" placeholder="Username" /><br />
-			<img style="mix-blend-mode: lighten; width: 10%; position: relative; top: 15px; right: 5px;" src="./images/key.png" alt="password icon">
-			<input type="password" id="loginPassword" placeholder="Password"/><br />
-			<button type="button" id="loginButton" class="buttons" onclick="doLogin();"> Done </button>
+      <div>
+    			<span id="inner-title">L O G I N</span>
+    			<img title="Username" style="mix-blend-mode: lighten; width: 10%; position: relative; top: 10px;" src="./images/user.png" alt="User icon">
+    			<input type="text" id="loginName" placeholder="Username" /><br />
+      </div>
+    
+      <div style="display: inline-block">
+   			<a title="Toggle password visibility" style="position: relative; top: 10px;" onclick="togglePassword();"><img id="eyeball" src="./images/eye_close.png" alt="visibility toggle eyeball icon" style="width:10%;"></a>
+  			<input type="password" id="loginPassword" placeholder="Password"/><br />
+      </div>
+      
+			<button type="button" id="loginButton" class="buttons" onclick="doLogin();"> Login </button>
 			<p>
 				<img style="mix-blend-mode: lighten; width: 10%; position: relative; top: 15px; right: 5px;" src="./images/new.png" alt="new user icon">
 				<a style="font-size: 18px;"href="./register.html">New User? Register Here</a>

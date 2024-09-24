@@ -22,13 +22,13 @@
 		<div id="registerDiv">
 			<span id="inner-title">R E G I S T E R</span>
 			<p id="inner-title2" style="font-size: 20px;">All fields need to be filled*</p>
-			<img id="dotImg" style="mix-blend-mode: lighten; width: 10%; position: relative; top: 15px; right: 5px;" src="./images/dot.png" alt="dot icon">
+			<img title="First name" id="dotImg" style="mix-blend-mode: lighten; width: 10%; position: relative; top: 15px; right: 5px;" src="./images/dot.png" alt="dot icon">
       <input type="text" id="registerFirstName" placeholder="Your First Name" /><br />
-			<img id="dotImg2" style="mix-blend-mode: lighten; width: 10%; position: relative; top: 15px; right: 5px;" src="./images/dot.png" alt="dot icon">
+			<img title="Last name" id="dotImg2" style="mix-blend-mode: lighten; width: 10%; position: relative; top: 15px; right: 5px;" src="./images/dot.png" alt="dot icon">
       <input type="text" id="registerLastName" placeholder="Your Last Name" /><br />
-			<img id="userImg" style="mix-blend-mode: lighten; width: 10%; position: relative; top: 15px; right: 5px;" src="./images/user.png" alt="user icon">
+			<img title="Username" id="userImg" style="mix-blend-mode: lighten; width: 10%; position: relative; top: 15px; right: 5px;" src="./images/user.png" alt="user icon">
 			<input type="text" id="registerUsername" placeholder="Your Username" /><br />
-			<img id="keyImg" style="mix-blend-mode: lighten; width: 10%; position: relative; top: 10px;" src="./images/key.png" alt="password icon">
+			<a id="eyeballAnchor" title="Toggle password visibility" style="position: relative; top: 10px;" onclick="togglePassword();"><img id="eyeball" src="./images/eye_close.png" alt="visibility toggle eyeball icon" style="width:10%;"></a>
 			<input type="password" id="registerPassword" placeholder="Your Password"/><br />
 			<span id="registerGif"></span>
 			<p style="color: lightcoral;" id="registerResult"></p>
