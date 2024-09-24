@@ -15,23 +15,27 @@ body
     color: #d9ed92;
 }
 
-h1{
+h1
+{
     display: inline;
 }
 
-header{
+header
+{
     font-family: 'Ubuntu';
     font-size: 25px;
     text-align: center;
     color: #d9ed92;
 }
 
-a{
+a
+{
     font-family: 'Ubuntu';
     color: aqua;
     text-shadow: 2px 2px 2px #184e77;
 }
-a:hover{
+a:hover
+{
     color:#1a759f;
     cursor: pointer;
 }
@@ -174,13 +178,14 @@ a:hover{
     color: #184e77;
 }
 
-.buttons:hover{
+.buttons:hover
+{
     background-color: #184e77;
     color: #99d98c;
     opacity: 50%;
 }
 
-#registerUsername
+#registerUsername, #registerPassword, #registerFirstName, #registerLastName, #loginName, #loginPassword, .bInputs, .contactInputs
 {
     width: 250px;
 	font-size: 20px;
@@ -189,65 +194,9 @@ a:hover{
     background-color: rgba(41, 131, 38, 0.1);
     color: #b5e48c;
 }
-#registerPassword{
-    width: 250px;
-	font-size: 20px;
-    text-align: left;
-    padding-left: 10px;
-    background-color: rgba(41, 131, 38, 0.1);
-    color: #b5e48c;
-}
-#registerFirstName{
-    width: 250px;
-	font-size: 20px;
-    text-align: left;
-    padding-left: 10px;
-    background-color: rgba(41, 131, 38, 0.1);
-    color: #b5e48c;
-}
-#registerLastName{
-    width: 250px;
-	font-size: 20px;
-    text-align: left;
-    padding-left: 10px;
-    background-color: rgba(41, 131, 38, 0.1);
-    color: #b5e48c;
-}
-#loginName
-{
-    width: 250px;
-	font-size: 20px;
-    text-align: left;
-    padding-left: 10px;
-    background-color: rgba(41, 131, 38, 0.1);
-    color: #b5e48c;
-}
-#loginPassword
-{
-    width: 250px;
-	  font-size: 20px;
-    text-align: left;
-    padding-left: 10px;
-    background-color: rgba(41, 131, 38, 0.1);
-    color: #b5e48c;
-}
-.bInputs
-{
-    width: 250px;
-	  font-size: 20px;
-    text-align: left;
-    padding-left: 10px;
-    background-color: rgba(41, 131, 38, 0.1);
-    color: #b5e48c;
-}
+
 .contactInputs
 {
-    width: 250px;
-	  font-size: 20px;
-    text-align: left;
-    padding-left: 10px;
-    background-color: rgba(41, 131, 38, 0.1);
-    color: #b5e48c;
     margin: 3%;
 }
 #saveContactButton
@@ -307,7 +256,8 @@ input[type="text"],input[type="password"],input[type="tel"],input[type="email"]
     font-family: 'Ubuntu';
 }
 
-#inner-title{
+#inner-title
+{
     display: inline-block;
     font-size: 30px;
     width: 90%;
@@ -316,7 +266,8 @@ input[type="text"],input[type="password"],input[type="tel"],input[type="email"]
     font-family: 'Ubuntu';
     color: #d9ed92;;
 }
-#inner-title2{
+#inner-title2
+{
     display: inline-block;
     font-size: 30px;
     width: 90%;
@@ -336,7 +287,8 @@ input[type="text"],input[type="password"],input[type="tel"],input[type="email"]
     text-shadow: 2px 2px 2px #184e77;
 }
 
-#loginResult{
+#loginResult
+{
     display: inline-block;
     font-size: 0.8em;
     width: 90%;
@@ -346,30 +298,30 @@ input[type="text"],input[type="password"],input[type="tel"],input[type="email"]
     font-family: 'Ubuntu';
     color: #95060a;
 }
-.beforeUserName
+
+#userName, .beforeUserName
 {
     display: inline;
     width: 80%;
-    margin-left: 10%;
     font-size: 30px;
+    font-family: 'Ubuntu';
+    color: #d9ed92;
+}
+
+.beforeUserName
+{
     text-align: center;
-    font-family: 'Ubuntu';
-    color: #d9ed92;
 }
-#userName{
-    display: inline;
-    width: 80%;
-    font-size: 30px;
-    font-family: 'Ubuntu';
-    color: #d9ed92;
-}
-#searchContactsButton{
+
+#searchContactsButton
+{
     padding: 10px;
     border-radius: 15px;
     font-size: 25px;
     width: 30%;
 }
-#logoutButton{
+#logoutButton
+{
     width: 30%;
     margin-top: 15px;
     margin-bottom: 25px;
@@ -384,15 +336,8 @@ input[type="text"],input[type="password"],input[type="tel"],input[type="email"]
 
     -webkit-text-stroke: 1px #c41d34;
 }
-#loginButton{
-    width: 40%;
-    margin-top: 15px;
-    margin-bottom: 25px;
-    padding: 10px;
-    border-radius: 15px;
-    font-size: 25px;
-}
-#registerButton{
+#loginButton, #registerButton
+{
     width: 40%;
     margin-top: 15px;
     margin-bottom: 25px;
@@ -401,7 +346,8 @@ input[type="text"],input[type="password"],input[type="tel"],input[type="email"]
     font-size: 25px;
 }
 
-select{
+select
+{
     width: 30%;
     margin-left: 35%;
     margin-top: 2%;
@@ -409,11 +355,13 @@ select{
     font-family: 'Ubuntu';
 }
 
-#colorSearchResult{
+#colorSearchResult
+{
     display: none;
 }
 
-#colorAddResult{
+#colorAddResult
+{
     display: inline-block;
     font-size: 0.8em;
     width: 90%;
