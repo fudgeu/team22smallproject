@@ -26,9 +26,7 @@
 				$searchResults .= ",";
 			}
 			$searchCount++;
-			 //$searchResults .= '"' . $row["Name"] . ',' . $row["Phone"] . ',' . $row["Email"] . '"';
-			$searchResults .= '{"FirstName" : "' . $row{"FirstName"} . '", "LastName" : "' . $row{"LastName"} . '", "Phone" : "' . $row{"Phone"} . '", "Email" : "' . $row{"Email"} . '"}';
-	
+			$searchResults .= '{"Name" : "' . $row["Name"] . '" , "Phone" : "' . $row["Phone"] . '", "Email" : "' . $row["Email"] . '"}';
 		}
 		$stmt->close();
 		$conn->close();
