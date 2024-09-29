@@ -175,8 +175,9 @@ async function searchContacts() {
 		}
 
 		// Load results into table
+    // Daniel - removed .split(',')
 		displayedContacts = result.results.map(contact => {
-			return { info: contact.split(','), editing: false, editIds: [] }
+			return { info: contact, editing: false, editIds: [] }
 		})
 
 		// Render
@@ -270,7 +271,9 @@ async function onClickDeleteContact(name, phone, email) {
 
 		// Contact removed on server, remove from table
 		displayedContacts = displayedContacts.filter((entry) => {
-			const [n, p, e] = entry.info
+      const n = entry.info.Name;
+      const p = entry.info.Phone;
+      const e = entry.info.Email;
 			return n !== name || p !== phone || e != email
 		})
 
@@ -287,7 +290,7 @@ async function onClickDeleteContact(name, phone, email) {
 function startEditContact(name, phone, email) {
 	// Find entry and mark as editing
 	displayedContacts.forEach((entry) => {
-		if (entry.info[0] !== name || entry.info[1] !== phone || entry.info[2] !== email) return
+		if (entry.info.Name !== name || entry.info.Phone !== phone || entry.info.Email !== email) return
 		entry.editing = true
 	})
 
@@ -297,7 +300,7 @@ function startEditContact(name, phone, email) {
 function cancelEditContact(name, phone, email) {
 	// Find entry and unmark as editing
 	displayedContacts.forEach((entry) => {
-		if (entry.info[0] !== name || entry.info[1] !== phone || entry.info[2] !== email) return
+		if (entry.info.Name !== name || entry.info.Phone !== phone || entry.info.Email !== email) return
 		entry.editing = false
 		entry.editIds = []
 	})
@@ -310,7 +313,7 @@ async function saveContactEdits(name, phone, email) {
 	const resultText = document.getElementById('searchContactResult')
 
 	// Get data from textboxes
-	const entry = displayedContacts.find((e) => e.info[0] === name && e.info[1] === phone && e.info[2] === email)
+	const entry = displayedContacts.find((e) => e.info.Name === name && e.info.Phone === phone && e.info.Email === email)
 	if (!entry) return
 	const newName = document.getElementById(entry.editIds[0]).value ?? name
 	const newPhone = document.getElementById(entry.editIds[1]).value ?? phone
@@ -342,7 +345,9 @@ async function saveContactEdits(name, phone, email) {
 		}
 
 		// Update local entry in table and disable editing
-		entry.info = [newName, newPhone, newEmail]
+		entry.info.Name = newName;
+    entry.info.Phone = newPhone;
+    entry.info.Email = newEmail;
 		cancelEditContact(newName, newPhone, newEmail)
 
 		// Update result text
@@ -368,7 +373,7 @@ function renderTable() {
 
 	// Render contents of table
 	contactList.innerHTML = displayedContacts.map(entry => {
-		const splitText = entry.info
+		// const splitText = entry.info
 
 		if (entry.editing) {
 			if (entry.editIds.length === 0) {
@@ -382,15 +387,15 @@ function renderTable() {
 
 			return `
 			<tr>
-				<td><input id="${id1}" type="text" value="${splitText[0]}" placeholder="Name" /></td>
-				<td><input id="${id2}" type="tel" value="${splitText[1]}" placeholder="Phone" /></td>
-				<td><input id="${id3}" type="email" value="${splitText[2]}" placeholder="Email" /></td>
+				<td><input id="${id1}" type="text" value="${entry.info.Name}" placeholder="Name" /></td>
+				<td><input id="${id2}" type="tel" value="${entry.info.Phone}" placeholder="Phone" /></td>
+				<td><input id="${id3}" type="email" value="${entry.info.Email}" placeholder="Email" /></td>
 				<td>    
    					<div class="cancelSavePair">
-					<button class="cancelButton" onClick="cancelEditContact('${splitText[0]}', '${splitText[1]}', '${splitText[2]}')">
+					<button class="cancelButton" onClick="cancelEditContact('${entry.info.Name}', '${entry.info.Phone}', '${entry.info.Email}')">
 						<b>-</b>
 					</button>
-					<button class="saveButton" onClick="saveContactEdits('${splitText[0]}', '${splitText[1]}', '${splitText[2]}')">
+					<button class="saveButton" onClick="saveContactEdits('${entry.info.Name}', '${entry.info.Phone}', '${entry.info.Email}')">
 						<b></b>
 					</button>
 					</div>
@@ -400,15 +405,15 @@ function renderTable() {
 
 		return `
 			<tr>
-				<td>${splitText[0]}</td>
-				<td>${splitText[1]}</td>
-				<td>${splitText[2]}</td>
+				<td>${entry.info.Name}</td>
+				<td>${entry.info.Phone}</td>
+				<td>${entry.info.Email}</td>
 				<td>
 					<div class="editCancelPair">
-					<button class="editButton" onClick="startEditContact('${splitText[0]}', '${splitText[1]}', '${splitText[2]}')">
+					<button class="editButton" onClick="startEditContact('${entry.info.Name}', '${entry.info.Phone}', '${entry.info.Email}')">
 					
 					</button>
-					<button class="removeButton" onClick="confirmDeletion('${splitText[0]}', '${splitText[1]}', '${splitText[2]}')">
+					<button class="removeButton" onClick="confirmDeletion('${entry.info.Name}', '${entry.info.Phone}', '${entry.info.Email}')">
 						<b>X</b>
 					</button>
 					</div>
